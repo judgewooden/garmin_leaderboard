@@ -48,7 +48,7 @@ class Garmin:
             print(f'connect using tokenstore:{self.tokenstore}')
             self.garth.load(self.tokenstore)
         except Exception:
-            print('connect using user/password')
+            print('connect using email/password')
             self.garth.login(self.username, self.password)
             self.garth.dump(self.tokenstore)
 
@@ -76,7 +76,7 @@ class Steps:
     """ Manage the Steps data using pandas """
 
     def __init__(self, filename='leaderboard.csv', startdate=None, garmin=None):
-        
+
         self.lb_file = filename
         if startdate is None:
             current_year = dt.datetime.now().year
@@ -134,7 +134,7 @@ class Steps:
             fullname = entry["userInfo"]["fullname"]
             steps[fullname] = value
         return steps
-    
+
     def save_gapminder(self, year=None, file='gapminder.csv'):
         """ transform the data to be used by gapminder """
         if self.lb_df is None:
@@ -145,7 +145,8 @@ class Steps:
 
         df = self.lb_df
         df['date'] = pd.to_datetime(df['date'])
-        df = df[df['date'].dt.year == year]
+        if year is not None:
+            df = df[df['date'].dt.year == year]
         df = df.melt(id_vars=['date'], var_name='Person', value_name='Steps')
         df['day'] = pd.to_datetime(df['date']).dt.strftime('%Y%m%d')
         df.drop('date', axis=1, inplace=True)
