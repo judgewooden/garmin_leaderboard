@@ -11,7 +11,7 @@ import pandas as pd
 from ratelimit import limits, sleep_and_retry
 
 class Garmin:
-    """Class for fetching data from Garmin Connect."""
+    """ getting data from Garmin Connect"""
 
     def __init__(self, email=None, password=None, is_cn=False):
 
@@ -42,7 +42,7 @@ class Garmin:
         return self.garth.connectapi(path, **kwargs)
 
     def login(self):
-        """Log in using Garth."""
+        """log in using Garth"""
 
         try:
             print(f'connect using tokenstore:{self.tokenstore}')
@@ -58,8 +58,6 @@ class Garmin:
         settings = self.garth.connectapi(self.garmin_connect_user_settings_url)
         self.unit_system = settings["userData"]["measurementSystem"]
 
-        return True
-
     def get_leaderboard( self, startdate: str, enddate=None) -> Dict[str, Any]:
         """ Return available leaderboard for 'startdate' """
         if enddate is None:
@@ -73,7 +71,7 @@ class Garmin:
 
 
 class Steps:
-    """ Manage the Steps data using pandas """
+    """ manage the Steps data using pandas """
 
     def __init__(self, filename='leaderboard.csv', startdate=None, garmin=None):
 
@@ -113,7 +111,7 @@ class Steps:
 
         yesterday = dt.date.today() - dt.timedelta(days=1)
         for date in pd.date_range(start=self.next_date, end=yesterday):
-            print('get:', date.isoformat())
+            print('get:', date) 
             steps = self.get_steps_for_date(date.date())
             steps_df = pd.DataFrame([steps])
             self.lb_df = pd.concat([self.lb_df, steps_df], ignore_index=True, sort=False)
