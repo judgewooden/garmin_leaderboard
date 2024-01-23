@@ -1,0 +1,1372 @@
+[
+ {
+  "model": {
+   "data": {
+    "_lastModified": 1706014900214,
+    "hasNameColumn": false,
+    "lastModified": 1706014900214,
+    "nameColumnPosition": 0,
+    "noCache": true,
+    "path": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Walking.csv",
+    "reader": "ext-csv",
+    "sheet": "",
+    "timeInColumns": false,
+    "ddfPath": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Walking.csv"
+   },
+   "locale": {
+    "filePath": "/tmp/.mount_GapminXNjqQQ/assets/translation",
+    "id": "en"
+   },
+   "state": {
+    "entities": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "entities_colorlegend": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "marker": {
+     "allowSelectMultiple": true,
+     "axis_x": {
+      "allow": {
+       "scales": [
+        "time"
+       ]
+      },
+      "autoconfig": {
+       "index": 0,
+       "type": "time"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "time",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "day",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "axis_y": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log"
+       ]
+      },
+      "autoconfig": {
+       "type": "measure"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "linear",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "Walking",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "color": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log",
+        "genericLog",
+        "time",
+        "pow",
+        "ordinal"
+       ]
+      },
+      "autoconfig": {},
+      "data": "data",
+      "palette": {
+       "0": "#8c30e8",
+       "25": "#30a3e8",
+       "50": "#30e85e",
+       "75": "#e2c75a",
+       "100": "#e83030",
+       "_default": "#ffb600"
+      },
+      "paletteHiddenKeys": [],
+      "paletteLabels": null,
+      "scaleType": "linear",
+      "spaceRef": null,
+      "syncModels": [
+       "marker_colorlegend"
+      ],
+      "use": "indicator",
+      "which": "Color"
+     },
+     "highlight": [],
+     "label": {
+      "autoconfig": {
+       "includeOnlyIDs": [
+        "name"
+       ],
+       "type": "string"
+      },
+      "data": "data",
+      "scaleType": "ordinal",
+      "syncModels": [],
+      "use": "property",
+      "which": "Person"
+     },
+     "limit": 5000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities",
+      "time"
+     ],
+     "superHighlight": []
+    },
+    "marker_colorlegend": {
+     "allowSelectMultiple": true,
+     "highlight": [],
+     "hook_geoshape": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "shape_lores_svg"
+     },
+     "hook_rank": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "rank"
+     },
+     "label": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "name"
+     },
+     "limit": 1000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities_colorlegend"
+     ],
+     "superHighlight": []
+    },
+    "time": {
+     "autoconfig": {
+      "type": "time"
+     },
+     "delay": 150,
+     "delayThresholdX2": 90,
+     "delayThresholdX4": 45,
+     "dim": "day",
+     "end": "20231231",
+     "endBeforeForecast": "20240122",
+     "endOrigin": null,
+     "endSelected": "20231231",
+     "format": {
+      "data": null,
+      "ui": null
+     },
+     "immediatePlay": true,
+     "loop": false,
+     "offset": 0,
+     "pauseBeforeForecast": true,
+     "playable": true,
+     "playing": false,
+     "record": false,
+     "round": "round",
+     "showForecast": true,
+     "start": "20230801",
+     "startOrigin": null,
+     "startSelected": "20230801",
+     "step": 1,
+     "unit": "day",
+     "value": "20231231"
+    }
+   },
+   "ui": {
+    "buttons": [
+     "colors",
+     "find",
+     "moreoptions",
+     "presentation",
+     "sidebarcollapse",
+     "fullscreen"
+    ],
+    "chart": {
+     "curve": "curveMonotoneX",
+     "labels": {
+      "min_number_of_entities_when_values_hide": 2
+     },
+     "showForecastOverlay": false,
+     "whenHovering": {
+      "hideVerticalNow": false,
+      "higlightValueX": true,
+      "higlightValueY": true,
+      "showProjectionLineX": true,
+      "showProjectionLineY": true,
+      "showTooltip": false
+     }
+    },
+    "datawarning": {
+     "doubtDomain": [],
+     "doubtRange": []
+    },
+    "dialogs": {
+     "dialog": {
+      "find": {
+       "enableSelectShowSwitch": false,
+       "panelMode": "show"
+      }
+     },
+     "moreoptions": [
+      "opacity",
+      "speed",
+      "axes",
+      "colors",
+      "presentation",
+      "technical",
+      "about"
+     ],
+     "popup": [
+      "colors",
+      "find",
+      "moreoptions"
+     ],
+     "sidebar": [
+      "colors",
+      "find"
+     ]
+    },
+    "presentation": false,
+    "sidebarCollapse": false,
+    "splash": false
+   },
+   "chartType": "LineChart"
+  },
+  "title": "Walking",
+  "type": "LineChart"
+ },
+ {
+  "model": {
+   "data": {
+    "_lastModified": 1706014934190,
+    "hasNameColumn": false,
+    "lastModified": 1706014934190,
+    "nameColumnPosition": 0,
+    "noCache": true,
+    "path": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Swimming.csv",
+    "reader": "ext-csv",
+    "sheet": "",
+    "timeInColumns": false,
+    "ddfPath": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Swimming.csv"
+   },
+   "locale": {
+    "filePath": "/tmp/.mount_GapminXNjqQQ/assets/translation",
+    "id": "en"
+   },
+   "state": {
+    "entities": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "entities_colorlegend": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "marker": {
+     "allowSelectMultiple": true,
+     "axis_x": {
+      "allow": {
+       "scales": [
+        "time"
+       ]
+      },
+      "autoconfig": {
+       "index": 0,
+       "type": "time"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "time",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "day",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "axis_y": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log"
+       ]
+      },
+      "autoconfig": {
+       "type": "measure"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "linear",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "Swimming",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "color": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log",
+        "genericLog",
+        "time",
+        "pow",
+        "ordinal"
+       ]
+      },
+      "autoconfig": {},
+      "data": "data",
+      "palette": {
+       "0": "#8c30e8",
+       "25": "#30a3e8",
+       "50": "#30e85e",
+       "75": "#e2c75a",
+       "100": "#e83030",
+       "_default": "#ffb600"
+      },
+      "paletteHiddenKeys": [],
+      "paletteLabels": null,
+      "scaleType": "linear",
+      "spaceRef": null,
+      "syncModels": [
+       "marker_colorlegend"
+      ],
+      "use": "indicator",
+      "which": "Color"
+     },
+     "highlight": [],
+     "label": {
+      "autoconfig": {
+       "includeOnlyIDs": [
+        "name"
+       ],
+       "type": "string"
+      },
+      "data": "data",
+      "scaleType": "ordinal",
+      "syncModels": [],
+      "use": "property",
+      "which": "Person"
+     },
+     "limit": 5000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities",
+      "time"
+     ],
+     "superHighlight": []
+    },
+    "marker_colorlegend": {
+     "allowSelectMultiple": true,
+     "highlight": [],
+     "hook_geoshape": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "shape_lores_svg"
+     },
+     "hook_rank": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "rank"
+     },
+     "label": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "name"
+     },
+     "limit": 1000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities_colorlegend"
+     ],
+     "superHighlight": []
+    },
+    "time": {
+     "autoconfig": {
+      "type": "time"
+     },
+     "delay": 150,
+     "delayThresholdX2": 90,
+     "delayThresholdX4": 45,
+     "dim": "day",
+     "end": "20231219",
+     "endBeforeForecast": "20240122",
+     "endOrigin": null,
+     "endSelected": "20231219",
+     "format": {
+      "data": null,
+      "ui": null
+     },
+     "immediatePlay": true,
+     "loop": false,
+     "offset": 0,
+     "pauseBeforeForecast": true,
+     "playable": true,
+     "playing": false,
+     "record": false,
+     "round": "round",
+     "showForecast": true,
+     "start": "20230822",
+     "startOrigin": null,
+     "startSelected": "20230822",
+     "step": 1,
+     "unit": "day",
+     "value": "20231219"
+    }
+   },
+   "ui": {
+    "buttons": [
+     "colors",
+     "find",
+     "moreoptions",
+     "presentation",
+     "sidebarcollapse",
+     "fullscreen"
+    ],
+    "chart": {
+     "curve": "curveMonotoneX",
+     "labels": {
+      "min_number_of_entities_when_values_hide": 2
+     },
+     "showForecastOverlay": false,
+     "whenHovering": {
+      "hideVerticalNow": false,
+      "higlightValueX": true,
+      "higlightValueY": true,
+      "showProjectionLineX": true,
+      "showProjectionLineY": true,
+      "showTooltip": false
+     }
+    },
+    "datawarning": {
+     "doubtDomain": [],
+     "doubtRange": []
+    },
+    "dialogs": {
+     "dialog": {
+      "find": {
+       "enableSelectShowSwitch": false,
+       "panelMode": "show"
+      }
+     },
+     "moreoptions": [
+      "opacity",
+      "speed",
+      "axes",
+      "colors",
+      "presentation",
+      "technical",
+      "about"
+     ],
+     "popup": [
+      "colors",
+      "find",
+      "moreoptions"
+     ],
+     "sidebar": [
+      "colors",
+      "find"
+     ]
+    },
+    "presentation": false,
+    "sidebarCollapse": false,
+    "splash": false
+   },
+   "chartType": "LineChart"
+  },
+  "title": "Swimming",
+  "type": "LineChart"
+ },
+ {
+  "model": {
+   "data": {
+    "_lastModified": 1706014994083,
+    "hasNameColumn": false,
+    "lastModified": 1706014994083,
+    "nameColumnPosition": 0,
+    "noCache": true,
+    "path": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Steps.csv",
+    "reader": "ext-csv",
+    "sheet": "",
+    "timeInColumns": false,
+    "ddfPath": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Steps.csv"
+   },
+   "locale": {
+    "filePath": "/tmp/.mount_GapminXNjqQQ/assets/translation",
+    "id": "en"
+   },
+   "state": {
+    "entities": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "entities_colorlegend": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "marker": {
+     "allowSelectMultiple": true,
+     "axis_x": {
+      "allow": {
+       "scales": [
+        "time"
+       ]
+      },
+      "autoconfig": {
+       "index": 0,
+       "type": "time"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "time",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "day",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "axis_y": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log"
+       ]
+      },
+      "autoconfig": {
+       "type": "measure"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "linear",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "Steps",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "color": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log",
+        "genericLog",
+        "time",
+        "pow",
+        "ordinal"
+       ]
+      },
+      "autoconfig": {},
+      "data": "data",
+      "palette": {
+       "0": "#8c30e8",
+       "25": "#30a3e8",
+       "50": "#30e85e",
+       "75": "#e2c75a",
+       "100": "#e83030",
+       "_default": "#ffb600"
+      },
+      "paletteHiddenKeys": [],
+      "paletteLabels": null,
+      "scaleType": "linear",
+      "spaceRef": null,
+      "syncModels": [
+       "marker_colorlegend"
+      ],
+      "use": "indicator",
+      "which": "Color"
+     },
+     "highlight": [],
+     "label": {
+      "autoconfig": {
+       "includeOnlyIDs": [
+        "name"
+       ],
+       "type": "string"
+      },
+      "data": "data",
+      "scaleType": "ordinal",
+      "syncModels": [],
+      "use": "property",
+      "which": "Person"
+     },
+     "limit": 5000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities",
+      "time"
+     ],
+     "superHighlight": []
+    },
+    "marker_colorlegend": {
+     "allowSelectMultiple": true,
+     "highlight": [],
+     "hook_geoshape": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "shape_lores_svg"
+     },
+     "hook_rank": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "rank"
+     },
+     "label": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "name"
+     },
+     "limit": 1000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities_colorlegend"
+     ],
+     "superHighlight": []
+    },
+    "time": {
+     "autoconfig": {
+      "type": "time"
+     },
+     "delay": 150,
+     "delayThresholdX2": 90,
+     "delayThresholdX4": 45,
+     "dim": "day",
+     "end": "20231231",
+     "endBeforeForecast": "20240122",
+     "endOrigin": null,
+     "endSelected": "20231231",
+     "format": {
+      "data": null,
+      "ui": null
+     },
+     "immediatePlay": true,
+     "loop": false,
+     "offset": 0,
+     "pauseBeforeForecast": true,
+     "playable": true,
+     "playing": false,
+     "record": false,
+     "round": "round",
+     "showForecast": true,
+     "start": "20230101",
+     "startOrigin": null,
+     "startSelected": "20230101",
+     "step": 1,
+     "unit": "day",
+     "value": "20231231"
+    }
+   },
+   "ui": {
+    "buttons": [
+     "colors",
+     "find",
+     "moreoptions",
+     "presentation",
+     "sidebarcollapse",
+     "fullscreen"
+    ],
+    "chart": {
+     "curve": "curveMonotoneX",
+     "labels": {
+      "min_number_of_entities_when_values_hide": 2
+     },
+     "showForecastOverlay": false,
+     "whenHovering": {
+      "hideVerticalNow": false,
+      "higlightValueX": true,
+      "higlightValueY": true,
+      "showProjectionLineX": true,
+      "showProjectionLineY": true,
+      "showTooltip": false
+     }
+    },
+    "datawarning": {
+     "doubtDomain": [],
+     "doubtRange": []
+    },
+    "dialogs": {
+     "dialog": {
+      "find": {
+       "enableSelectShowSwitch": false,
+       "panelMode": "show"
+      }
+     },
+     "moreoptions": [
+      "opacity",
+      "speed",
+      "axes",
+      "colors",
+      "presentation",
+      "technical",
+      "about"
+     ],
+     "popup": [
+      "colors",
+      "find",
+      "moreoptions"
+     ],
+     "sidebar": [
+      "colors",
+      "find"
+     ]
+    },
+    "presentation": false,
+    "sidebarCollapse": false,
+    "splash": false
+   },
+   "chartType": "LineChart"
+  },
+  "title": "Steps",
+  "type": "LineChart"
+ },
+ {
+  "model": {
+   "data": {
+    "_lastModified": 1706015021493,
+    "hasNameColumn": false,
+    "lastModified": 1706015021493,
+    "nameColumnPosition": 0,
+    "noCache": true,
+    "path": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Running.csv",
+    "reader": "ext-csv",
+    "sheet": "",
+    "timeInColumns": false,
+    "ddfPath": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Running.csv"
+   },
+   "locale": {
+    "filePath": "/tmp/.mount_GapminXNjqQQ/assets/translation",
+    "id": "en"
+   },
+   "state": {
+    "entities": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "entities_colorlegend": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "marker": {
+     "allowSelectMultiple": true,
+     "axis_x": {
+      "allow": {
+       "scales": [
+        "time"
+       ]
+      },
+      "autoconfig": {
+       "index": 0,
+       "type": "time"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "time",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "day",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "axis_y": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log"
+       ]
+      },
+      "autoconfig": {
+       "type": "measure"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "linear",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "Running",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "color": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log",
+        "genericLog",
+        "time",
+        "pow",
+        "ordinal"
+       ]
+      },
+      "autoconfig": {},
+      "data": "data",
+      "palette": {
+       "0": "#8c30e8",
+       "25": "#30a3e8",
+       "50": "#30e85e",
+       "75": "#e2c75a",
+       "100": "#e83030",
+       "_default": "#ffb600"
+      },
+      "paletteHiddenKeys": [],
+      "paletteLabels": null,
+      "scaleType": "linear",
+      "spaceRef": null,
+      "syncModels": [
+       "marker_colorlegend"
+      ],
+      "use": "indicator",
+      "which": "Color"
+     },
+     "highlight": [],
+     "label": {
+      "autoconfig": {
+       "includeOnlyIDs": [
+        "name"
+       ],
+       "type": "string"
+      },
+      "data": "data",
+      "scaleType": "ordinal",
+      "syncModels": [],
+      "use": "property",
+      "which": "Person"
+     },
+     "limit": 5000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities",
+      "time"
+     ],
+     "superHighlight": []
+    },
+    "marker_colorlegend": {
+     "allowSelectMultiple": true,
+     "highlight": [],
+     "hook_geoshape": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "shape_lores_svg"
+     },
+     "hook_rank": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "rank"
+     },
+     "label": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "name"
+     },
+     "limit": 1000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities_colorlegend"
+     ],
+     "superHighlight": []
+    },
+    "time": {
+     "autoconfig": {
+      "type": "time"
+     },
+     "delay": 150,
+     "delayThresholdX2": 90,
+     "delayThresholdX4": 45,
+     "dim": "day",
+     "end": "20231231",
+     "endBeforeForecast": "20240122",
+     "endOrigin": null,
+     "endSelected": "20231231",
+     "format": {
+      "data": null,
+      "ui": null
+     },
+     "immediatePlay": true,
+     "loop": false,
+     "offset": 0,
+     "pauseBeforeForecast": true,
+     "playable": true,
+     "playing": false,
+     "record": false,
+     "round": "round",
+     "showForecast": true,
+     "start": "20230802",
+     "startOrigin": null,
+     "startSelected": "20230802",
+     "step": 1,
+     "unit": "day",
+     "value": "20231231"
+    }
+   },
+   "ui": {
+    "buttons": [
+     "colors",
+     "find",
+     "moreoptions",
+     "presentation",
+     "sidebarcollapse",
+     "fullscreen"
+    ],
+    "chart": {
+     "curve": "curveMonotoneX",
+     "labels": {
+      "min_number_of_entities_when_values_hide": 2
+     },
+     "showForecastOverlay": false,
+     "whenHovering": {
+      "hideVerticalNow": false,
+      "higlightValueX": true,
+      "higlightValueY": true,
+      "showProjectionLineX": true,
+      "showProjectionLineY": true,
+      "showTooltip": false
+     }
+    },
+    "datawarning": {
+     "doubtDomain": [],
+     "doubtRange": []
+    },
+    "dialogs": {
+     "dialog": {
+      "find": {
+       "enableSelectShowSwitch": false,
+       "panelMode": "show"
+      }
+     },
+     "moreoptions": [
+      "opacity",
+      "speed",
+      "axes",
+      "colors",
+      "presentation",
+      "technical",
+      "about"
+     ],
+     "popup": [
+      "colors",
+      "find",
+      "moreoptions"
+     ],
+     "sidebar": [
+      "colors",
+      "find"
+     ]
+    },
+    "presentation": false,
+    "sidebarCollapse": false,
+    "splash": false
+   },
+   "chartType": "LineChart"
+  },
+  "title": "Running",
+  "type": "LineChart"
+ },
+ {
+  "model": {
+   "data": {
+    "_lastModified": 1706015054305,
+    "hasNameColumn": false,
+    "lastModified": 1706015054305,
+    "nameColumnPosition": 0,
+    "noCache": true,
+    "path": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Cycling.csv",
+    "reader": "ext-csv",
+    "sheet": "",
+    "timeInColumns": false,
+    "ddfPath": "/home/judge/Source/garmin_steps_leaderboard/gapminder_Cycling.csv"
+   },
+   "locale": {
+    "filePath": "/tmp/.mount_GapminXNjqQQ/assets/translation",
+    "id": "en"
+   },
+   "state": {
+    "entities": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "entities_colorlegend": {
+     "autoconfig": {
+      "excludeIDs": [
+       "tag"
+      ],
+      "type": "entity_domain"
+     },
+     "dim": "Person",
+     "filter": {},
+     "show": {},
+     "showFallback": {},
+     "showItemsMaxCount": null,
+     "skipFilter": false
+    },
+    "marker": {
+     "allowSelectMultiple": true,
+     "axis_x": {
+      "allow": {
+       "scales": [
+        "time"
+       ]
+      },
+      "autoconfig": {
+       "index": 0,
+       "type": "time"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "time",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "day",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "axis_y": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log"
+       ]
+      },
+      "autoconfig": {
+       "type": "measure"
+      },
+      "data": "data",
+      "domainMax": null,
+      "domainMin": null,
+      "fixBaseline": null,
+      "scaleType": "linear",
+      "syncModels": [],
+      "use": "indicator",
+      "which": "Cycling",
+      "zoomedMax": null,
+      "zoomedMin": null
+     },
+     "color": {
+      "allow": {
+       "scales": [
+        "linear",
+        "log",
+        "genericLog",
+        "time",
+        "pow",
+        "ordinal"
+       ]
+      },
+      "autoconfig": {},
+      "data": "data",
+      "palette": {
+       "0": "#8c30e8",
+       "25": "#30a3e8",
+       "50": "#30e85e",
+       "75": "#e2c75a",
+       "100": "#e83030",
+       "_default": "#ffb600"
+      },
+      "paletteHiddenKeys": [],
+      "paletteLabels": null,
+      "scaleType": "linear",
+      "spaceRef": null,
+      "syncModels": [
+       "marker_colorlegend"
+      ],
+      "use": "indicator",
+      "which": "Color"
+     },
+     "highlight": [],
+     "label": {
+      "autoconfig": {
+       "includeOnlyIDs": [
+        "name"
+       ],
+       "type": "string"
+      },
+      "data": "data",
+      "scaleType": "ordinal",
+      "syncModels": [],
+      "use": "property",
+      "which": "Person"
+     },
+     "limit": 5000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities",
+      "time"
+     ],
+     "superHighlight": []
+    },
+    "marker_colorlegend": {
+     "allowSelectMultiple": true,
+     "highlight": [],
+     "hook_geoshape": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "shape_lores_svg"
+     },
+     "hook_rank": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "rank"
+     },
+     "label": {
+      "data": "data",
+      "syncModels": [],
+      "use": "property",
+      "which": "name"
+     },
+     "limit": 1000,
+     "opacityHighlightDim": 0.1,
+     "opacityRegular": 1,
+     "opacitySelectDim": 0.3,
+     "select": [],
+     "space": [
+      "entities_colorlegend"
+     ],
+     "superHighlight": []
+    },
+    "time": {
+     "autoconfig": {
+      "type": "time"
+     },
+     "delay": 150,
+     "delayThresholdX2": 90,
+     "delayThresholdX4": 45,
+     "dim": "day",
+     "end": "20231231",
+     "endBeforeForecast": "20240122",
+     "endOrigin": null,
+     "endSelected": "20231231",
+     "format": {
+      "data": null,
+      "ui": null
+     },
+     "immediatePlay": true,
+     "loop": false,
+     "offset": 0,
+     "pauseBeforeForecast": true,
+     "playable": true,
+     "playing": false,
+     "record": false,
+     "round": "round",
+     "showForecast": true,
+     "start": "20230722",
+     "startOrigin": null,
+     "startSelected": "20230722",
+     "step": 1,
+     "unit": "day",
+     "value": "20231231"
+    }
+   },
+   "ui": {
+    "buttons": [
+     "colors",
+     "find",
+     "moreoptions",
+     "presentation",
+     "sidebarcollapse",
+     "fullscreen"
+    ],
+    "chart": {
+     "curve": "curveMonotoneX",
+     "labels": {
+      "min_number_of_entities_when_values_hide": 2
+     },
+     "showForecastOverlay": false,
+     "whenHovering": {
+      "hideVerticalNow": false,
+      "higlightValueX": true,
+      "higlightValueY": true,
+      "showProjectionLineX": true,
+      "showProjectionLineY": true,
+      "showTooltip": false
+     }
+    },
+    "datawarning": {
+     "doubtDomain": [],
+     "doubtRange": []
+    },
+    "dialogs": {
+     "dialog": {
+      "find": {
+       "enableSelectShowSwitch": false,
+       "panelMode": "show"
+      }
+     },
+     "moreoptions": [
+      "opacity",
+      "speed",
+      "axes",
+      "colors",
+      "presentation",
+      "technical",
+      "about"
+     ],
+     "popup": [
+      "colors",
+      "find",
+      "moreoptions"
+     ],
+     "sidebar": [
+      "colors",
+      "find"
+     ]
+    },
+    "presentation": false,
+    "sidebarCollapse": false,
+    "splash": false
+   },
+   "chartType": "LineChart"
+  },
+  "title": "Cycling",
+  "type": "LineChart"
+ }
+]

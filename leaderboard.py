@@ -5,6 +5,7 @@
 from typing import Any, Dict
 import os
 import datetime as dt
+import math
 
 import garth
 import pandas as pd
@@ -25,7 +26,11 @@ class Garmin:
             "/userprofile-service/userprofile/user-settings"
         )
 
-        self.garmin_connect_leaderboards_url = (
+        self.garmin_connect_leaderboard_activity_url = (
+            "/userstats-service/leaderboard/activity/connection"
+        )
+
+        self.garmin_connect_leaderboard_wellness_url = (
             "/userstats-service/leaderboard/wellness/connection"
         )
 
@@ -37,6 +42,8 @@ class Garmin:
         self.full_name = None
         self.unit_system = None
 
+    @sleep_and_retry
+    @limits(calls=3, period=1)  
     def connectapi(self, path, **kwargs):
         """get path data"""
         return self.garth.connectapi(path, **kwargs)
@@ -58,19 +65,28 @@ class Garmin:
         settings = self.garth.connectapi(self.garmin_connect_user_settings_url)
         self.unit_system = settings["userData"]["measurementSystem"]
 
-    def get_leaderboard( self, startdate: str, enddate=None) -> Dict[str, Any]:
-        """ Return available leaderboard for 'startdate' """
+    def get_leaderboard_activity( self, startdate: str, actTypeId: int, enddate=None) -> Dict[str, Any]:
+        """ Return available leaderboard activity for 'startdate' """
         if enddate is None:
             enddate = startdate
-        url = f"{self.garmin_connect_leaderboards_url}"
-        params = {"metricId": 29,
+        url = f"{self.garmin_connect_leaderboard_activity_url}"
+        params = {"metricId": 17, "actTypeId": actTypeId,
                   "startDate": str(startdate), "endDate": str(enddate),
                   "start": 1, "limit": 999}
+        return self.connectapi(url, params=params)
 
+    def get_leaderboard_wellness( self, startdate: str, enddate=None) -> Dict[str, Any]:
+        """ Return available leaderboard steps for 'startdate' """
+        if enddate is None:
+            enddate = startdate
+        url = f"{self.garmin_connect_leaderboard_wellness_url}"
+        params = {"metricId": 29, 
+                  "startDate": str(startdate), "endDate": str(enddate),
+                  "start": 1, "limit": 999}
         return self.connectapi(url, params=params)
 
 
-class Steps:
+class Leaderboard:
     """ manage the Steps data using pandas """
 
     def __init__(self, filename='leaderboard.csv', startdate=None, garmin=None):
@@ -87,6 +103,13 @@ class Steps:
 
         self.api = garmin
 
+        self.activity_types = {
+            'Cycling': 2,
+            'Swimming': 26,
+            'Walking': 9,
+            'Running': 1
+        }
+        
     def load_data(self):
         """ load existing data and download from last spot"""
         try:
@@ -112,28 +135,43 @@ class Steps:
         yesterday = dt.date.today() - dt.timedelta(days=1)
         for date in pd.date_range(start=self.next_date, end=yesterday):
             print('get:', date) 
+            distances = self.get_distances_for_date(date.date())
             steps = self.get_steps_for_date(date.date())
-            steps_df = pd.DataFrame([steps])
-            self.lb_df = pd.concat([self.lb_df, steps_df], ignore_index=True, sort=False)
+            distances.append(steps)
+            result_df = pd.DataFrame(distances)
+            self.lb_df = pd.concat([self.lb_df, result_df], ignore_index=True, sort=False)
 
         self.lb_df.set_index('date', inplace=True)
         self.lb_df = self.lb_df.reset_index()
         self.lb_df['date'] = pd.to_datetime(self.lb_df['date']).dt.date
         self.lb_df.to_csv(self.lb_file, index=False)
 
-    @sleep_and_retry
-    @limits(calls=1, period=1)  
     def get_steps_for_date(self, date):
         """ return only the name and steps """
-        steps = {'date': date.isoformat()}
-        lb = self.api.get_leaderboard(date.isoformat())  
-        for entry in lb["allMetrics"]["metricsMap"]["WELLNESS_TOTAL_STEPS"]:
+        leaderboard = self.api.get_leaderboard_wellness(date.isoformat())  
+        result = {'date': date.isoformat(),
+                  'metric': 'Steps' }
+        for entry in leaderboard["allMetrics"]["metricsMap"]["WELLNESS_TOTAL_STEPS"]:
             value = entry["value"]
             fullname = entry["userInfo"]["fullname"]
-            steps[fullname] = value
-        return steps
+            result[fullname] = value
+        return result
 
-    def save_gapminder(self, year=None, file='gapminder.csv'):
+    def get_distances_for_date(self, date):
+        """ return only the name and steps """
+        activities = []
+        for name, actTypeId in self.activity_types.items():
+            leaderboard = self.api.get_leaderboard_activity(date.isoformat(), actTypeId=actTypeId)
+            result = {'date': date.isoformat(), 'metric': name }
+            if "ACTIVITY_TOTAL_DISTANCE" in leaderboard["allMetrics"]["metricsMap"]:
+                for entry in leaderboard["allMetrics"]["metricsMap"]["ACTIVITY_TOTAL_DISTANCE"]:
+                    value = entry["value"]
+                    fullname = entry["userInfo"]["fullname"]
+                    result[fullname] = value
+                activities.append(result)
+        return activities
+
+    def save_gapminder(self, year=None):
         """ transform the data to be used by gapminder """
         if self.lb_df is None:
             self.load_data()
@@ -145,17 +183,27 @@ class Steps:
         df['date'] = pd.to_datetime(df['date'])
         if year is not None:
             df = df[df['date'].dt.year == year]
-        df = df.melt(id_vars=['date'], var_name='Person', value_name='Steps')
+
+        df = df.melt(id_vars=['date', 'metric'], var_name='Person', value_name='Value')
+        df = df.set_index(['Person', 'date', 'metric'])['Value'].unstack().reset_index()
+        df = df.fillna(0)
         df['day'] = pd.to_datetime(df['date']).dt.strftime('%Y%m%d')
         df.drop('date', axis=1, inplace=True)
-        df = df[['Person', 'day', 'Steps']]
-        df = df.sort_values(by=['Person', 'day'])
-        df['Steps'] = df.groupby('Person')['Steps'].cumsum()
+        column_order = ['Person', 'day'] + [col for col in df.columns if col not in ['Person', 'day']]
+        df = df[column_order]
+        df = df.sort_values(by=['Person','day'])
+        numeric_cols = df.columns.drop(['Person', 'day'])
         df = df.sort_values(by='day')
-        unique_persons = df['Person'].unique()
-        person_to_color = {person: i+1 for i, person in enumerate(unique_persons)}
-        df['Color'] = df['Person'].map(person_to_color)
-        df.to_csv(file, index=False)
+        for numeric_col in numeric_cols:
+            df_subset = df[['Person', 'day', numeric_col]]
+            df_subset = df_subset[df_subset[numeric_col] != 0]
+            df_subset[numeric_col] = df.groupby(['Person'])[numeric_col].cumsum()
+            df_subset.loc[:, 'Person'] = df_subset['Person'].str.split().str[0]
+            unique_persons = df_subset['Person'].unique()
+            person_to_color = {person: i+1 for i, person in enumerate(unique_persons)}
+            df_subset['Color'] = df_subset['Person'].map(person_to_color)
+            file_name = f"gapminder_{numeric_col}.csv"
+            df_subset.to_csv(file_name, index=False)
 
 # import getpass
 # email = input("Enter email address: ")
@@ -167,8 +215,9 @@ password = os.getenv("PASSWORD")
 api = Garmin(email, password)
 api.login()
 
-steps = Steps(garmin = api)
-steps.update_data()
-steps.save_gapminder()
+leaderboard = Leaderboard(garmin = api)
+leaderboard.update_data()
+# TODO fix this
+leaderboard.save_gapminder()
 
 print("fin")

@@ -4,9 +4,10 @@
 .gitignore
 
 #### custom
+*.gmstat
+!garmin.gmstat
 *.csv
 Gapminder*
-*gmstat
 get.sh
 
 ### Python ###
