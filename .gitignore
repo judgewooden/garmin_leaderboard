@@ -4,8 +4,13 @@
 .gitignore
 
 #### custom
+*.gif
+!garmin-gapminder.gif
+*.png
+*.webm
+*.jpg
 *.gmstat
-!garmin.gmstat
+!garmin-gapminder.gmstat
 *.csv
 Gapminder*
 get.sh

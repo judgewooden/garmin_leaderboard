@@ -25,15 +25,12 @@ class Garmin:
         self.garmin_connect_user_settings_url = (
             "/userprofile-service/userprofile/user-settings"
         )
-
         self.garmin_connect_leaderboard_activity_url = (
             "/userstats-service/leaderboard/activity/connection"
         )
-
         self.garmin_connect_leaderboard_wellness_url = (
             "/userstats-service/leaderboard/wellness/connection"
         )
-
         self.garth = garth.Client(
             domain="garmin.cn" if is_cn else "garmin.com"
         )
@@ -50,7 +47,6 @@ class Garmin:
 
     def login(self):
         """log in using Garth"""
-
         try:
             print(f'connect using tokenstore:{self.tokenstore}')
             self.garth.load(self.tokenstore)
@@ -148,10 +144,10 @@ class Leaderboard:
 
     def get_steps_for_date(self, date):
         """ return only the name and steps """
-        leaderboard = self.api.get_leaderboard_wellness(date.isoformat())  
+        lb = self.api.get_leaderboard_wellness(date.isoformat())  
         result = {'date': date.isoformat(),
                   'metric': 'Steps' }
-        for entry in leaderboard["allMetrics"]["metricsMap"]["WELLNESS_TOTAL_STEPS"]:
+        for entry in lb["allMetrics"]["metricsMap"]["WELLNESS_TOTAL_STEPS"]:
             value = entry["value"]
             fullname = entry["userInfo"]["fullname"]
             result[fullname] = value
@@ -161,10 +157,10 @@ class Leaderboard:
         """ return only the name and steps """
         activities = []
         for name, actTypeId in self.activity_types.items():
-            leaderboard = self.api.get_leaderboard_activity(date.isoformat(), actTypeId=actTypeId)
+            lb = self.api.get_leaderboard_activity(date.isoformat(), actTypeId=actTypeId)
             result = {'date': date.isoformat(), 'metric': name }
-            if "ACTIVITY_TOTAL_DISTANCE" in leaderboard["allMetrics"]["metricsMap"]:
-                for entry in leaderboard["allMetrics"]["metricsMap"]["ACTIVITY_TOTAL_DISTANCE"]:
+            if "ACTIVITY_TOTAL_DISTANCE" in lb["allMetrics"]["metricsMap"]:
+                for entry in lb["allMetrics"]["metricsMap"]["ACTIVITY_TOTAL_DISTANCE"]:
                     value = entry["value"]
                     fullname = entry["userInfo"]["fullname"]
                     result[fullname] = value
@@ -176,10 +172,7 @@ class Leaderboard:
         if self.lb_df is None:
             self.load_data()
 
-        if year is None:
-            year = dt.datetime.now().year - 1
-
-        df = self.lb_df
+        df = self.lb_df.copy()
         df['date'] = pd.to_datetime(df['date'])
         if year is not None:
             df = df[df['date'].dt.year == year]
@@ -205,19 +198,20 @@ class Leaderboard:
             file_name = f"gapminder_{numeric_col}.csv"
             df_subset.to_csv(file_name, index=False)
 
+email = os.getenv("EMAIL")
+password = os.getenv("PASSWORD")
+
 # import getpass
 # email = input("Enter email address: ")
 # password = getpass("Enter password: ")
-
-email = os.getenv("EMAIL")
-password = os.getenv("PASSWORD")
 
 api = Garmin(email, password)
 api.login()
 
 leaderboard = Leaderboard(garmin = api)
 leaderboard.update_data()
-# TODO fix this
-leaderboard.save_gapminder()
+
+last_year = dt.datetime.now().year - 1
+leaderboard.save_gapminder(year=last_year)
 
 print("fin")
