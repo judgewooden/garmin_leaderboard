@@ -1,4 +1,4 @@
-# Garmin steps leaderboard for gapminder
+# Garmin leaderboard in gapminder in time display
 
 Download and transform garmin leaderboard data for display in gapminder.
 
@@ -8,6 +8,6 @@ Download and transform garmin leaderboard data for display in gapminder.
  
 2) Use https://www.gapminder.org/tools 
 
-3) load presets using garmin-gapminder.gmstat
+3) Load presets using garmin-gapminder.gmstat
 
-Remember: to run the program regularly to download the stats to a local .csv file, since garmin only share 6 months of activity data.
+Remember: Run the program regularly to download the stats to a local .csv file, since garmin only share 6 months of activity data.
